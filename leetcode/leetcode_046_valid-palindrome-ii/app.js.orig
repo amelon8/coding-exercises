@@ -1,0 +1,54 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var validPalindrome = function(s) {
+  let i1 = 0;
+  let i2 = s.length - 1;
+  let deleted = 0;
+
+  while (true) {
+    console.log("i1:", i1, "i2:", i2, "s[i1]:", s[i1], "s[i2]:", s[i2]);
+    if (deleted > 1)
+      return false;
+    if (i1 >= i2) {
+      console.log("i1:", i1, " >= ", "i2:", i2);
+      return true;
+    }
+    if (s[i1] === s[i2]) {
+      i1++;
+      i2--;
+    } else {
+      if (s[i1+1] === s[i2]) {
+        console.log("s[i1+1]:", s[i1+1], "s[i2]:", s[i2]);
+        i1++;
+        deleted++;
+      } else if (s[i1] === s[i2-1]) {
+        console.log("s[i1]:", s[i1], "s[i2-1]:", s[i2-1]);
+        i2--;
+        deleted++;
+      } else {
+        console.log("Invalid palindrome");
+        return false;
+      }
+    }
+  }
+};
+
+function assert(condition, message) {
+  if (!condition) {
+      message = message || "Assertion failed";
+      if (typeof Error !== "undefined") {
+          throw new Error(message);
+      }
+      throw message; // Fallback
+  }
+}
+
+assert(validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga"
+) === true);
+assert(validPalindrome("abc") === false);
+assert(validPalindrome("aba") === true);
+assert(validPalindrome("abca") === true);  // Delete character 'c'
+assert(validPalindrome("abbbca") === true);
+assert(validPalindrome("eeccccbebaeeabebccceea") === false);
