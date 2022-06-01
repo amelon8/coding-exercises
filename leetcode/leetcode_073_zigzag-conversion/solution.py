@@ -71,7 +71,7 @@ class Solution:
         return new_s
 
     def convertX(self, s, numRows):
-        """From solution - more optimized"""
+        """From solutions page - concise/optimized"""
         if numRows == 1:
             return s
         n = len(s)
