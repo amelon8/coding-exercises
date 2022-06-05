@@ -3,16 +3,11 @@
 from typing import List
 
 
-def isascii(s):
-    """Check if the characters in string s are in ASCII, U+0-U+7F."""
-    return len(s) == len(s.encode())
-
-
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
-        if not s.isalpha() or not t.isalpha():
+        if not s.isascii() or not t.isascii():
             return False
         s_map = {}
         s_new = ""
